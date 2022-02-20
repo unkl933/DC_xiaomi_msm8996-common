@@ -12,4 +12,11 @@ allow hal_power_default sysfs_devices_system_cpu:file rw_file_perms;
 allow hal_power_default proc_schedboost:file { open write };
 allow hal_power_default sysfs_kgsl:file rw_file_perms;
 allow hal_power_default sysfs_devfreq:file rw_file_perms;
+allow hal_power_default sysfs_devfreq:lnk_file rw_file_perms;
 allow hal_power_default sysfs_devfreq:dir search;
+allow hal_power_default init:unix_stream_socket connectto;
+
+allow hal_power_default self:capability sys_resource;
+allow hal_power_default vendor_power_prop:file { read open getattr };
+allow hal_power_default vendor_power_prop:property_service set;
+allow hal_power_default property_socket:sock_file write;
