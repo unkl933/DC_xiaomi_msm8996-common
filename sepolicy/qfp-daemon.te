@@ -6,7 +6,7 @@ allow qfp-daemon captouch_device:chr_file rw_file_perms;
 allow qfp-daemon mnt_vendor_file:dir search;
 
 # Add IQfpService service
-allow qfp-daemon iqfp_service:service_manager add;
+# allow qfp-daemon iqfp_service:service_manager add;
 
 r_dir_file(qfp-daemon, persist_qc_senseid_file)
 r_dir_file(qfp-daemon, sensors_persist_file)
