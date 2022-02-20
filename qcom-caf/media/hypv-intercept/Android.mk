@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
         hypv_intercept.cpp
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../mm-video-v4l2/vidc/common/inc
+LOCAL_C_INCLUDES := device/xiaomi/msm8996-common/qcom-caf/media/mm-video-v4l2/vidc/common/inc
 
 LOCAL_SHARED_LIBRARIES := liblog libdl
 
