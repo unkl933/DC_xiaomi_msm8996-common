@@ -323,6 +323,17 @@
     <integer name="config_proximityCheckTimeout">200</integer>
     <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
 
+    <!-- Flag indicating whether the surface flinger has limited
+         alpha compositing functionality in hardware.  If set, the window
+         manager will disable alpha trasformation in animations where not
+         strictly needed. -->
+    <bool name="config_sf_limitedAlpha">true</bool>
+
+    <!-- Enables or disables fading edges when marquee is enabled in TextView.
+         Off by default, since the framebuffer readback used to implement the
+         fading edges is prohibitively expensive on most GPUs. -->
+    <bool name="config_ui_enableFadingMarquee">true</bool>
+
     <!-- Stop listening to the fingerprint reader when NON-WAKEUP proximity sensor is covered & screen is off.
          config_proximityCheckOnWake must be true. -->
     <bool name="config_proximityCheckOnFingerprintWake">true</bool>
