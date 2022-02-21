@@ -519,6 +519,8 @@ PRODUCT_PACKAGES += \
     vndk_package \
     libgui_vendor
 
+PRODUCT_EXTRA_VNDK_VERSIONS := 28 29 30
+
 # FIXME: master: compat for libprotobuf
 # See https://android-review.googlesource.com/c/platform/prebuilts/vndk/v28/+/1109518
 PRODUCT_PACKAGES += \
