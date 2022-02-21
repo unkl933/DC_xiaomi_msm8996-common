@@ -18,3 +18,6 @@ vendor.thermal.config      u:object_r:thermal_prop:s0
 wifi.active.               u:object_r:exported_wifi_prop:s0
 
 vendor.powerhal.                               u:object_r:vendor_power_prop:s0
+
+# Dirac
+persist.audio.dirac.       u:object_r:dirac_prop:s0
