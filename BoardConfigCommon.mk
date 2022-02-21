@@ -183,7 +183,7 @@ BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
 SELINUX_IGNORE_NEVERALLOWS := true
 include device/qcom/sepolicy-legacy-um/SEPolicy.mk
 
-BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy/vendor
 
 # Sysprop
 BUILD_BROKEN_ENFORCE_SYSPROP_OWNER := true
