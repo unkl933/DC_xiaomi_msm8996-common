@@ -285,6 +285,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
     android.hidl.base@1.0.vendor \
+    android.hidl.manager@1.0 \
     libhidltransport \
     libhwbinder \
     libhidltransport.vendor \
@@ -508,7 +509,8 @@ PRODUCT_PACKAGES += \
 
 #VNDK
 PRODUCT_PACKAGES += \
-    vndk_package
+    vndk_package \
+    libgui_vendor
 
 # FIXME: master: compat for libprotobuf
 # See https://android-review.googlesource.com/c/platform/prebuilts/vndk/v28/+/1109518
