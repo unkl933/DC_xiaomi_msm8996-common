@@ -27,8 +27,6 @@ $(call inherit-product, vendor/xiaomi/msm8996-common/msm8996-common-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay 
 
-PRODUCT_ENFORCE_RRO_TARGETS := *
-
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -101,7 +99,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.service \
     android.hardware.audio@6.0-impl:32 \
     android.hardware.audio.effect@6.0-impl:32 \
-    android.hardware.soundtrigger@2.2-impl:32 \
     audio.a2dp.default \
     audio.primary.msm8996 \
     audio.r_submix.default \
