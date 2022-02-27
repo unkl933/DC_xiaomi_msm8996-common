@@ -17,4 +17,5 @@ allow system_app qfp-daemon_core_data_file:file create_file_perms;
 
 allow system_app qfp_proxy_service:service_manager add;
 
-get_prop(system_app, vendor_persist_camera_prop);
+# allow system apps to read battery status
+r_dir_file(system_app, sysfs_battery_supply)
