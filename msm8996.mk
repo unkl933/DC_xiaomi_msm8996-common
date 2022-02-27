@@ -157,6 +157,11 @@ PRODUCT_PACKAGES += \
     libmm-qcamera \
     libstdc++.vendor
 
+# Common config scripts
+PRODUCT_PACKAGES += \
+    init.panel.sh \
+    init.spectrum.sh
+
 # Common init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
@@ -170,7 +175,8 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.device.rc \
     ueventd.qcom.rc \
-    init.bt.sh
+    init.bt.sh \
+    init.spectrum.rc
 
 # CNE
 PRODUCT_PACKAGES += \
