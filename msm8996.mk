@@ -447,6 +447,9 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl:64 \
     android.hardware.sensors@1.0-service
 
+# Qcom soong namespace
+QCOM_SOONG_NAMESPACE := $(LOCAL_PATH)/qcom-caf
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
