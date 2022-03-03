@@ -381,17 +381,10 @@ vendor/lib64/libvpplibrary.so|30e8e7cf1495fb88162beeb65e6273f28563b43b
 # Keystore - from LA.UM.9.6.2.r1-04100-89xx.0
 vendor/lib64/hw/keystore.msm8937.so:vendor/lib64/hw/keystore.msm8996.so
 
-# Listen - from LA.UM.9.6.3.r1-04400-89xx.0
-system_ext/lib/liblistensoundmodel2.qti.so|80bcda8ef520bd37865e66fed1417ea57606ab46
-system_ext/lib64/liblistensoundmodel2.qti.so|d222c69327e19265aeeec043d74bda6a8b24eb7f
-vendor/lib/hw/sound_trigger.primary.msm8953.so:vendor/lib/hw/sound_trigger.primary.msm8996.so
-vendor/lib/libadpcmdec.so|452d1123ab4e12c4444df33322f309e2ecc2e1e4
-vendor/lib/liblistensoundmodel2.so|1be16b762221f9805de77e5decb07cee0d4047df
-vendor/lib/libmulawdec.so|ca1045d8cef044ef722c323ea22ffa1e60ac8a92
-vendor/lib/libsmwrapper.so|bd5f722c74a85b9fa11f95950782559411d2fed7
-vendor/lib/vendor.qti.voiceprint@1.0.so|4f42d43a9cefd0599e960d0bb21ad75a0795d0d7
-vendor/lib64/liblistensoundmodel2.so|9969aee4ab4504fffabd5567fe1bfcd567b7edac
-vendor/lib64/vendor.qti.voiceprint@1.0.so|001a755ca7b6f95af152b63e0664eb5748cfb5fa
+# Listen - from LA.UM.9.6.2.r1-03600-89xx.0
+vendor/lib/hw/sound_trigger.primary.msm8937.so:vendor/lib/hw/sound_trigger.primary.msm8996.so
+vendor/lib/libadpcmdec.so
+vendor/lib/libsmwrapper.so
 
 # Peripheral manager - from LA.UM.9.6.2.r1-04100-89xx.0
 vendor/bin/pm-proxy|782599642da7fbfc21f5e9a9965d898efeb75859
