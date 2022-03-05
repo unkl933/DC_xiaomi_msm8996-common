@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2016-2021 The Android Open Source Project
+<!-- Copyright 2016 The Android Open Source Project
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -10,6 +10,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
 <!--
 <!DOCTYPE MediaCodecs [
 <!ELEMENT Include EMPTY>
@@ -62,6 +63,7 @@ Only the three quirks included above are recognized at this point:
     matching surfaceflinger support that can render the custom format to
     a texture and possibly other code, so just DON'T USE THIS QUIRK.
 -->
+
 <!--
  8996 Decoder capabilities
  __________________________________________________________________
@@ -73,7 +75,6 @@ Only the three quirks included above are recognized at this point:
  |          | (4096)  (2160)  (56)    (100)           |            |
  | mpeg4    | 1920    1088    60      60      489600  |  N         |
  | vp8      | 3840    2160    30      20      979200  |  N         |
- | vp9      | 3840    2160    30      20      979200  |  Y         |
  | h263     | 864     480     30      2       48600   |  N         |
  |__________|_________________________________________|____________|
  8996 Encoder capabilities
@@ -87,6 +88,7 @@ Only the three quirks included above are recognized at this point:
  | h263     | 864     480     30      2       48600   |
  |__________|_________________________________________|
 -->
+
 <MediaCodecs>
     <Include href="media_codecs_google_audio.xml" />
     <Include href="media_codecs_google_telephony.xml" />
@@ -239,6 +241,21 @@ Only the three quirks included above are recognized at this point:
             <Limit name="performance-point-720x576" value="25" />
             <Limit name="performance-point-720x480" value="30" />
         </MediaCodec>
+        <MediaCodec name="OMX.qcom.video.decoder.vp8" type="video/x-vnd.on2.vp8" >
+            <Quirk name="requires-allocate-on-input-ports" />
+            <Quirk name="requires-allocate-on-output-ports" />
+            <Limit name="size" min="64x64" max="4096x4096" />
+            <Limit name="alignment" value="2x2" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="block-count" range="1-32768" /> <!-- max 4096x2048 -->
+            <Limit name="blocks-per-second" min="1" max="979200" />
+            <Limit name="bitrate" range="1-20000000" />
+            <Feature name="adaptive-playback" />
+            <Limit name="concurrent-instances" max="16" />
+            <Limit name="performance-point-3840x2160" value="30" />
+            <Limit name="performance-point-1920x1080" value="120" />
+            <Limit name="performance-point-1280x720" value="240" />
+        </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.hevc" type="video/hevc" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
@@ -270,6 +287,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="performance-point-3840x2160" value="60" />
             <Limit name="performance-point-1920x1080" value="240" />
         </MediaCodec>
+	<MediaCodec name="OMX.google.opus.decoder" type="audio/opus" update="true" rank="100"/>
     </Decoders>
     <Include href="media_codecs_google_video.xml" />
 </MediaCodecs>
