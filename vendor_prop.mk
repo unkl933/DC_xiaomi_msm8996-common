@@ -172,7 +172,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=480 \
     debug.sf.enable_hwc_vds=1 \
     debug.sf.latch_unsignaled=1 \
     debug.sf.recomputecrop=0 \
@@ -187,6 +186,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.dbg.wfc_avail_ovr=1 \
     service.qti.ims.enabled=1 \
     vendor.service.qti.ims.enabled=1
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.device_config.runtime_native_boot.iorap_readahead_enable=true
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
