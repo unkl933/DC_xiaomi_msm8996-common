@@ -282,3 +282,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Zygote preforking
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.device_config.runtime_native.usap_pool_enabled=true
+
+# Storage.xml moment
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.binary_xml=false
