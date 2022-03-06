@@ -1,2 +1,1 @@
 set_prop(netmgrd, vendor_xlat_prop)
-allow netmgrd diag_device:chr_file {open read write };
