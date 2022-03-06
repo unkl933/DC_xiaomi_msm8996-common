@@ -30,7 +30,6 @@
 # Set shared buttons and touchpanel nodes ownership (these are proc_symlinks to the real sysfs nodes)
 chown -LR system.system /proc/buttons
 chown -L system.system /proc/touchpanel/reversed_keys_enable
-chown -L system.system /proc/touchpanel/double_tap_enable
 chown -L system.system /proc/touchpanel/capacitive_keys_enable
 
 target=`getprop ro.board.platform`
