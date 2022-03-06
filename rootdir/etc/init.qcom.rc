@@ -81,6 +81,9 @@ on init
     chmod 0664 /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms
     chmod 0664 /sys/class/devfreq/soc:qcom,memlat-cpu4/min_freq
 
+    # Change permissions for /dev/diag
+    chmod 0666 /dev/diag
+
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
 
