@@ -353,7 +353,7 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libstagefrighthw \
-    libmm-omxcore \
+    libextmedia_jni \
     libstagefright_omx.vendor
 
 # Perf

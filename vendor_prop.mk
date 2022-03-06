@@ -189,7 +189,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.video.disable.ubwc=1 \
+    vidc.enc.dcvs.extra-buff-count=2 \
     vendor.vidc.disable.split.mode=1 \
     mmp.enable.3g2=true \
     media.aac_51_output_enabled=true \
