@@ -171,7 +171,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.set_idle_timer_ms=9000 \
     vendor.display.disable_rotator_downscale=1 \
     vendor.display.disable_scaler=0 \
-    vendor.gralloc.enable_fb_ubwc=1
+    vendor.gralloc.enable_fb_ubwc=1 \
+    debug.hwui.use_buffer_age=false
 
 # Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
