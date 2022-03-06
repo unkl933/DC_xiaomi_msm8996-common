@@ -168,9 +168,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_rotator_split=1 \
     vendor.display.disable_skip_validate=1 \
     vendor.display.enable_default_color_mode=1 \
-    vendor.gralloc.enable_fb_ubwc=1 \
     ro.surface_flinger.set_idle_timer_ms=9000 \
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+    vendor.display.disable_rotator_downscale=1 \
+    vendor.display.disable_scaler=0 \
+    vendor.gralloc.enable_fb_ubwc=1
 
 # Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
