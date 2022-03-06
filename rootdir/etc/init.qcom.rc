@@ -263,13 +263,6 @@ on boot
     chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_min
     chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_val
 
-    # Access permission for smartPA
-    chmod 0666 /dev/i2c-3
-    chmod 0666 /dev/i2c-9
-
-    # Create NETMGR daemon socket area
-    mkdir /dev/socket/netmgr 0750 radio radio
-
 # msm specific files that need to be created on /data
 on post-fs-data
     write /sys/class/graphics/fb0/idle_time 100
