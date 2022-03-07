@@ -102,7 +102,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@6.0-impl:32 \
     android.hardware.soundtrigger@2.2-impl:32 \
     audio.a2dp.default \
-    audio.primary.msm8996 \
+    audio.primary.default \
     audio.r_submix.default \
     audio.usb.default \
     libaacwrapper \
