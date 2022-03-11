@@ -502,6 +502,14 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_TARGET_VNDK_VERSION := 30
 
+# Vndservicemanager
+PRODUCT_PACKAGES += \
+    vndservicemanager
+
+# VNDK
+PRODUCT_PACKAGES += \
+    com.android.vndk.current.on_vendor
+
 # FIXME: master: compat for libprotobuf
 # See https://android-review.googlesource.com/c/platform/prebuilts/vndk/v28/+/1109518
 PRODUCT_PACKAGES += \
