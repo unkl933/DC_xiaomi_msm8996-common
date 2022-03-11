@@ -2,5 +2,3 @@ allow init adsprpcd_file:filesystem { mount relabelfrom relabelto };
 allow init debugfs:file write;
 allow init sysfs_batteryinfo:file setattr;
 allow init socket_device:sock_file { unlink setattr create };
-allow init per_boot_file:file ioctl;
-allowxperm init per_boot_file:file ioctl { F2FS_IOC_SET_PIN_FILE };
