@@ -4,6 +4,11 @@ audio.                     u:object_r:audio_prop:s0
 dual.camera.cs.br          u:object_r:camera_prop:s0
 persist.camera.            u:object_r:camera_prop:s0
 
+# Graphics
+ro.gfx.driver.1                     u:object_r:graphics_config_prop:s0
+
+# Hardware
+ro.hardware.chipname                u:object_r:build_prop:s0
 
 # Global
 ro.boot.factorybuild                            u:object_r:vendor_public_vendor_default_prop:s0
