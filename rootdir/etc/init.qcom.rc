@@ -812,7 +812,14 @@ service esepmdaemon /system/vendor/bin/esepmdaemon
 
 on charger
     setprop persist.sys.usb.config mass_storage
+    start vendor.hvdcp_opti
     start qcom-post-boot
+
+service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
+    class main
+    user root
+    group system wakelock
+    writepid /dev/cpuset/system-background/tasks
 
 #add poweroffhandler
 service poweroffhandler /system/vendor/bin/poweroffhandler
