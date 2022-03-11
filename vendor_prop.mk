@@ -180,7 +180,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_scaler=0 \
     vendor.gralloc.enable_fb_ubwc=1 \
     debug.hwui.use_buffer_age=false \
-    debug.hwui.renderer=skiavk
+    debug.hwui.renderer=skiavk \
+    vendor.display.enable_async_powermode=0 \
+    vendor.display.enable_camera_smooth=1 \
+    vendor.display.enable_posted_start_dyn=1 \
+    vendor.display.use_smooth_motion=1
 
 # Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
