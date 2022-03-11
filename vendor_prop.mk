@@ -184,7 +184,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.enable_async_powermode=0 \
     vendor.display.enable_camera_smooth=1 \
     vendor.display.enable_posted_start_dyn=1 \
-    vendor.display.use_smooth_motion=1
+    vendor.display.use_smooth_motion=1 \
+    vendor.display.disable_excl_rect_partial_fb=1
 
 # Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
