@@ -495,6 +495,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vndk_package
 
+PRODUCT_TARGET_VNDK_VERSION := 30
+
 # FIXME: master: compat for libprotobuf
 # See https://android-review.googlesource.com/c/platform/prebuilts/vndk/v28/+/1109518
 PRODUCT_PACKAGES += \
