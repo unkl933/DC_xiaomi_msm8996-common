@@ -501,10 +501,6 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl:64 \
     android.hardware.vibrator@1.0-service
 
-# Shipping level
-BOARD_SHIPPING_API_LEVEL := 30
-PRODUCT_SHIPPING_API_LEVEL := 30
-
 #VNDK
 PRODUCT_PACKAGES += \
     vndk_package
