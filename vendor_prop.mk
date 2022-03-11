@@ -186,6 +186,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.enable_hwc_vds=1 \
     debug.sf.latch_unsignaled=1 \
     debug.sf.recomputecrop=0 \
+    debug.sdm.support_writeback=0 \
     ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
     ro.surface_flinger.max_virtual_display_dimension=4096 \
     ro.surface_flinger.max_frame_buffer_acquired_buffers=3
