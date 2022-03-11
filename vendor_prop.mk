@@ -225,8 +225,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
 
 # Disable iorapd
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.iorapd.enable=false
+# PRODUCT_PROPERTY_OVERRIDES += \
+  #  ro.iorapd.enable=false
 
 # Disable iorapd perfetto tracing for app starts
 PRODUCT_PROPERTY_OVERRIDES += \
