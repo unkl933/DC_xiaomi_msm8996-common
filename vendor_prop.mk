@@ -131,8 +131,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat-filter=speed \
-    dalvik.vm.image-dex2oat-filter=speed \
     dalvik.vm.dex2oat64.enabled=true
 
 # Display (Qualcomm AD)
@@ -291,7 +289,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.upgrade_pressure=40 \
     ro.lmk.downgrade_pressure=60 \
     ro.lmk.use_psi=false \
-    ro.config.low_ram=false \
+    ro.config.low_ram=true \
     ro.lmk.log_stats=false
 
 # GPS
