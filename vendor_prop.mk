@@ -289,7 +289,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.critical_upgrade=true \
     ro.lmk.upgrade_pressure=40 \
     ro.lmk.downgrade_pressure=60 \
-    ro.lmk.use_psi=false
+    ro.lmk.use_psi=false \
+    ro.config.low_ram=false \
+    ro.lmk.log_stats=false
 
 # GPS
 PRODUCT_PROPERTY_OVERRIDES += \
