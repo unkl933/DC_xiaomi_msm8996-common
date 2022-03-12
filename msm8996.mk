@@ -407,6 +407,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librecovery_updater_xiaomi
 
+# RenderScript
+PRODUCT_PACKAGES += \
+    android.hardware.renderscript@1.0-impl
+
 # Remove unwanted packages
 PRODUCT_PACKAGES += \
     Remove_Packages
@@ -426,9 +430,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     librs_jni
-
-# VNDK
-PRODUCT_EXTRA_VNDK_VERSIONS := 28 29 30
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
