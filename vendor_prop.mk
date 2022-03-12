@@ -131,18 +131,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat64.enabled=true \
-    dalvik.vm.dex2oat64.enabled=true \
-    ro.vendor.qti.am.reschedule_service=true \
-    ro.sys.fw.dex2oat_thread_count=4 \
-    dalvik.vm.boot-dex2oat-cpu-set=0,1,2,3 \
-    dalvik.vm.boot-dex2oat-threads=4 \
-    dalvik.vm.dex2oat-cpu-set=0,1,2,3 \
-    dalvik.vm.dex2oat-filter=quicken \
-    dalvik.vm.dex2oat-threads=2 \
-    dalvik.vm.image-dex2oat-cpu-set=2,3 \
-    dalvik.vm.image-dex2oat-filter=quicken \
-    dalvik.vm.image-dex2oat-threads=4
+    dalvik.vm.dex2oat-filter=speed \
+    dalvik.vm.image-dex2oat-filter=speed \
+    dalvik.vm.dex2oat64.enabled=true
 
 # Display (Qualcomm AD)
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -281,7 +272,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.critical_upgrade=true \
     ro.lmk.upgrade_pressure=40 \
     ro.lmk.downgrade_pressure=60 \
-    ro.config.low_ram=true \
     ro.lmk.use_psi=false
 
 # GPS
