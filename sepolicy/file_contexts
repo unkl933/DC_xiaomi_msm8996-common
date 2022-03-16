@@ -6,6 +6,7 @@
 /dev/sysmatdrv                        u:object_r:sysmatdrv_device:s0
 
 # Sys files
+/sys/devices/soc/70000.qcom,msm-thermal/uio/uio[0-9]+(/.*)?        u:object_r:sysfs_uio_file:s0
 /sys/devices/soc/75b7000\.i2c/i2c-9/9-[0-9a-f]+/leds(/.*)?    u:object_r:sysfs_leds:s0
 /sys/devices/soc/leds-qpnp-[0-9]+/leds(/.*)?                  u:object_r:sysfs_leds:s0
 
@@ -24,13 +25,6 @@
 /sys/devices/soc/soc:fpc_fpc1020/proximity_state                                u:object_r:sysfs_fpc_proximity:s0
 
 /sys/module/cnss_common/parameters/bdwlan_file                                  u:object_r:sysfs_cnss_common:s0
-
-/sys/devices/virtual/timed_output/vibrator/vtg_level    u:object_r:sysfs_vibrator:s0
-/sys/devices/virtual/timed_output/vibrator/vtg_min      u:object_r:sysfs_vibrator:s0
-/sys/devices/virtual/timed_output/vibrator/vtg_max      u:object_r:sysfs_vibrator:s0
-
-/sys/devices/soc/qpnp-flash-led-30/leds/led:torch_0/max_brightness            u:object_r:sysfs_torch:s0
-/sys/devices/soc/qpnp-flash-led-30/leds/led:torch_1/max_brightness            u:object_r:sysfs_torch:s0
 
 # Data files
 /data/fpc(/.*)?                       u:object_r:fpc_data_file:s0
