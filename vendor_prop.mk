@@ -132,7 +132,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat64.enabled=true \
-    dalvik.vm.dex2oat64.enabled=true \
     ro.vendor.qti.am.reschedule_service=true \
     ro.sys.fw.dex2oat_thread_count=4 \
     dalvik.vm.boot-dex2oat-cpu-set=0,1,2,3 \
@@ -177,6 +176,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_rotator_split=1 \
     vendor.display.disable_skip_validate=1 \
     vendor.display.enable_default_color_mode=1 \
+    vendor.display.perf_hint_window=50 \
     vendor.gralloc.enable_fb_ubwc=1
 
 # Surfaceflinger
@@ -221,6 +221,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
+    ro.vendor.qti.sys.fw.bg_apps_limit=60
 
 # Disable iorapd
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -267,6 +268,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # TimeService
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
+
+# Spectrum Kernel Manager
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.spectrum.profile=0
 
 # USB
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -4538,22 +4538,11 @@ case "$target" in
         echo 0 > /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask
         echo -n enable > /sys/devices/soc/soc:qcom,bcl/mode
         # configure governor settings for little cluster
-        echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-        echo 20000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
-        echo 500 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
+        echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
         # online CPU2
         echo 1 > /sys/devices/system/cpu/cpu2/online
         # configure governor settings for big cluster
-        echo "schedutil" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
-        echo 10000 > /sys/devices/system/cpu/cpufreq/policy2/schedutil/down_rate_limit_us
-        echo 500 > /sys/devices/system/cpu/cpufreq/policy2/schedutil/up_rate_limit_us
-        # Set up schedtune
-        echo 1 > /dev/stune/top-app/schedtune.prefer_idle
-        echo 30 > /dev/stune/top-app/schedtune.sched_boost
-        echo 1 > /dev/stune/foreground/schedtune.prefer_idle
-        # Set up dynamic stune boost
-        echo 3000 > /sys/module/cpu_boost/parameters/dynamic_stune_boost_ms
-        echo 10 > /sys/module/cpu_boost/parameters/dynamic_stune_boost
+        echo "interactive" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
         # re-enable thermal and BCL hotplug
         echo 0 > /sys/module/msm_thermal/core_control/enabled
         echo -n disable > /sys/devices/soc/soc:qcom,bcl/mode
@@ -4654,25 +4643,11 @@ case "$target" in
 	echo 1 > /sys/devices/system/cpu/cpu4/core_ctl/is_big_cluster
 	echo 4 > /sys/devices/system/cpu/cpu4/core_ctl/task_thres
 
-	# Setting b.L scheduler parameters
-	echo 95 > /proc/sys/kernel/sched_upmigrate
-	echo 85 > /proc/sys/kernel/sched_downmigrate
-	echo 100 > /proc/sys/kernel/sched_group_upmigrate
-	echo 95 > /proc/sys/kernel/sched_group_downmigrate
-	echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
-
 	# configure governor settings for little cluster
-	echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-	echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/rate_limit_us
-	echo 1209600 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/hispeed_freq
-	echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/pl
-        echo 576000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
 	# configure governor settings for big cluster
-	echo "schedutil" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-	echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/rate_limit_us
-	echo 1574400 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/hispeed_freq
-	echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/schedutil/pl
+	echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 	echo "0:1324800" > /sys/module/cpu_boost/parameters/input_boost_freq
 	echo 120 > /sys/module/cpu_boost/parameters/input_boost_ms
 	# Limit the min frequency to 825MHz
