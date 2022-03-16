@@ -367,20 +367,11 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti \
-    android.hardware.power.stats@1.0-service.xiaomi_msm8996
+    android.hardware.power.stats@1.0-service.mock \
+    vendor.qti.hardware.perf@2.0.vendor
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
-
-# Thermal HAL
-# PRODUCT_PACKAGES += \
-    # android.hardware.thermal@2.0-service.xiaomi_8996
-
-# PRODUCT_COPY_FILES += \
-    # $(LOCAL_PATH)/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
-
-# PRODUCT_PROPERTY_OVERRIDES += \
-    # vendor.thermal.config=thermal_info_config.json
 
 # Touch HAL
 PRODUCT_PACKAGES += \
