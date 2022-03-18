@@ -60,6 +60,14 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+    etc/permissions/privapp-permissions-qti.xml)
+            # MODIFY_PHONE_STATE
+            sed -i 's|<permission name="android.permission.READ_PRECISE_PHONE_STATE"/>|<permission name="android.permission.MODIFY_PHONE_STATE"/>\n        <permission name="android.permission.READ_PRECISE_PHONE_STATE"/>|g' "${2}"
+            # READ_PRIVILEGED_PHONE_STATE
+            sed -i 's|<permission name="android.permission.READ_PRECISE_PHONE_STATE"/>|<permission name="android.permission.READ_PRECISE_PHONE_STATE"/>\n        <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>|g' "${2}"
+            # WRITE_SECURE_SETTINGS
+            sed -i 's|<permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>|<permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>\n        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>|g' "${2}"
+            ;;
 
     # Rename msm8953 to msm8996
     vendor/lib/hw/activity_recognition.msm8996.so | vendor/lib64/hw/activity_recognition.msm8996.so)
