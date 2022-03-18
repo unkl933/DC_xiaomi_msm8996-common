@@ -93,7 +93,7 @@ PRODUCT_COPY_FILES += \
 
 # ANT+
 PRODUCT_PACKAGES += \
-    AntHalService-Soong
+    AntHalService
 
 # Audio
 PRODUCT_PACKAGES += \
