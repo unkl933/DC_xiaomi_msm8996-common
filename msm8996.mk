@@ -455,10 +455,6 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel \
     hardware/xiaomi
 
-# System
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.binary_xml=false
-
 # Telephony
 PRODUCT_PACKAGES += \
     ims-ext-common \
