@@ -132,7 +132,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat64.enabled=true \
-    ro.vendor.qti.am.reschedule_service=true \
     ro.sys.fw.dex2oat_thread_count=4 \
     dalvik.vm.boot-dex2oat-cpu-set=0,1,2,3 \
     dalvik.vm.boot-dex2oat-threads=4 \
@@ -220,8 +219,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=libqti-perfd-client.so \
-    ro.vendor.qti.sys.fw.bg_apps_limit=60
+    ro.vendor.extension_library=libqti-perfd-client.so
 
 # Disable iorapd
 PRODUCT_PROPERTY_OVERRIDES += \
