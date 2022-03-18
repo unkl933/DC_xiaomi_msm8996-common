@@ -226,6 +226,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.iorapd.enable=false
 
+# Printk
+persist.vendor.console.silent.config=1
+
 # Disable iorapd perfetto tracing for app starts
 PRODUCT_PROPERTY_OVERRIDES += \
     iorapd.perfetto.enable=false
