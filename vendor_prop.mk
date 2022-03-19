@@ -170,6 +170,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196610 \
+    debug.renderengine.backend=skiaglthreaded \
+    renderthread.skia.reduceopstasksplitting=true \
     dev.pm.dyn_samplingrate=1 \
     persist.demo.hdmirotationlock=false \
     persist.hwc.enable_vds=1 \
