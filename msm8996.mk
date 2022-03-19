@@ -532,8 +532,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libaacwrapper \
     libnl \
-    libstagefright_enc_common \
-    libshim_wfd
+    libstagefright_enc_common
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
