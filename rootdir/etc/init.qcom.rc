@@ -26,6 +26,8 @@
 #
 
 import /vendor/etc/init/hw/init.qcom.usb.rc
+import /vendor/etc/init/hw/init.unkl.rc
+import /vendor/etc/init/hw/init.spectrum.rc
 import /vendor/etc/init/hw/init.target.rc
 import /vendor/etc/init/hw/init.device.rc
 
@@ -57,7 +59,6 @@ on init
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
 
     # Setup permissions for Power HAL
-    chown system system /dev/stune/top-app/schedtune.boost
     chown system system /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
     chown system system /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
     chown system system /sys/class/kgsl/kgsl-3d0/force_rail_on
@@ -71,7 +72,6 @@ on init
     chown system system /sys/class/devfreq/soc:qcom,memlat-cpu4/min_freq
     chown system system /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length
 
-    chmod 0664 /dev/stune/top-app/schedtune.boost
     chmod 0664 /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
     chmod 0664 /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
     chmod 0664 /sys/class/kgsl/kgsl-3d0/force_rail_on
