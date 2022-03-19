@@ -152,6 +152,9 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/bt_firmware:/bt_firmware
 TARGET_COPY_OUT_VENDOR := vendor
 
+# Power
+TARGET_POWERHAL_MODE_EXT := $(VENDOR_PATH)/power/power-mode.cpp
+
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
 
