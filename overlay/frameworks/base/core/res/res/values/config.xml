@@ -322,5 +322,7 @@
 
     <!-- Exempt ImsService from privacy (location) indicators -->
     <string name="config_systemAudioIntelligence" translatable="false">org.codeaurora.ims</string>
+    <!-- Height of the status bar -->
+    <dimen name="status_bar_height">77px</dimen>
 
 </resources>
