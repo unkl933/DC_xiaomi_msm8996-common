@@ -530,9 +530,7 @@ PRODUCT_COPY_FILES += \
 
 # WiFi Display
 PRODUCT_PACKAGES += \
-    libaacwrapper \
-    libnl \
-    libstagefright_enc_common
+    libnl
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
