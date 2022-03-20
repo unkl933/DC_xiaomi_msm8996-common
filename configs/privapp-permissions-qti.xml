@@ -126,4 +126,8 @@ It allows additional grants on top of privapp-permissions-platform.xml
     <privapp-permissions package="org.codeaurora.qti.nrNetworkSettingApp">
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
     </privapp-permissions>
+
+    <privapp-permissions package="com.android.phone">
+        <permission name="android.permission.READ_PHONE_STATE"/>
+    </privapp-permissions>
 </permissions>
