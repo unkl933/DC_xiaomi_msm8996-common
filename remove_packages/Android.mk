@@ -16,11 +16,14 @@ LOCAL_OVERRIDES_PACKAGES := \
     DevicePolicyPrebuilt \
     DMService \
     Drive \
+    Flipendo \
     GCS \
     GoogleCamera \
     GrapheneOS-Camera \
     Maps \
     Music \
+    MaestroPrebuilt \
+    MicropaperPrebuilt \
     MyVerizonServices \
     OBDM_Permissions \
     obdm_stub \
@@ -48,6 +51,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     Videos \
     VZWAPNLib \
     VzwOmaTrigger \
+    WallpapersBReel2020 \
     YouTube \
     YouTubeMusicPrebuilt
 LOCAL_UNINSTALLABLE_MODULE := true
