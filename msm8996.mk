@@ -312,6 +312,10 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl:64 \
     android.hardware.keymaster@3.0-service
 
+# Keystore
+PRODUCT_PACKAGES += \
+    android.system.keystore2
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.xiaomi_8996
