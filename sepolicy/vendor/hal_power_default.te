@@ -1,5 +1,3 @@
-type proc_schedboost, proc_type;
-
 # Allow writing to files in /proc/touchpanel
 allow hal_power_default proc_touchpanel:dir search;
 allow hal_power_default proc_touchpanel:file rw_file_perms;
@@ -7,9 +5,9 @@ allow hal_power_default proc_touchpanel:file rw_file_perms;
 allow hal_power_default sysfs_kgsl:lnk_file read;
 allow hal_power_default debugfs_system_stats:file { open read getattr };
 allow hal_power_default sysfs_graphics:file { read open };
+allow hal_power_default cgroup:file rw_file_perms;
 
 allow hal_power_default sysfs_devices_system_cpu:file rw_file_perms;
-allow hal_power_default proc_schedboost:file { open write };
 allow hal_power_default sysfs_kgsl:file rw_file_perms;
 allow hal_power_default sysfs_devfreq:file rw_file_perms;
 allow hal_power_default sysfs_devfreq:dir search;
