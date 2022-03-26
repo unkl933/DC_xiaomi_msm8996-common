@@ -20,14 +20,17 @@ LOCAL_OVERRIDES_PACKAGES := \
     DMService \
     Drive \
     Flipendo \
+    FilesPrebuilt \
     GCS \
     GoogleCamera \
+    GoogleTTS \
     GrapheneOS-Camera \
     Maps \
     Music \
     MaestroPrebuilt \
     MicropaperPrebuilt \
     MyVerizonServices \
+    NexusLauncherRelease \
     NgaResources \
     OBDM_Permissions \
     obdm_stub \
@@ -36,6 +39,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     OPScreenRecord \
     Ornament \
     PixelLiveWallpaperPrebuilt \
+    PixelWallpapers2020 \
     Photos \
     PlayAutoInstallConfig \
     PrebuiltGmail \
