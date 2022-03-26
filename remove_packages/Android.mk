@@ -6,7 +6,9 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_TAGS := optional
 LOCAL_OVERRIDES_PACKAGES := \
     AmbientSensePrebuilt \
+    AppDirectedSMSService \
     arcore \
+    CarrierSetup \
     Camera2 \
     Chrome \
     Chrome-Stub \
@@ -14,6 +16,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     ConnMetrics \
     DCMO \
     DevicePolicyPrebuilt \
+    DiagnosticsToolPrebuilt \
     DMService \
     Drive \
     Flipendo \
@@ -25,6 +28,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     MaestroPrebuilt \
     MicropaperPrebuilt \
     MyVerizonServices \
+    NgaResources \
     OBDM_Permissions \
     obdm_stub \
     OdadPrebuilt \
@@ -42,6 +46,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     Showcase \
     Snap \
     Snap2 \
+    Stk \
     SnapdragonCamera \
     SoundAmplifierPrebuilt \
     SprintDM \
@@ -49,6 +54,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     Tycho \
     USCCDM \
     Videos \
+    Velvet \
     VZWAPNLib \
     VzwOmaTrigger \
     WallpapersBReel2020 \
