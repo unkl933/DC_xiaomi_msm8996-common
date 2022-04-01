@@ -30,7 +30,6 @@ LOCAL_OVERRIDES_PACKAGES := \
     MaestroPrebuilt \
     MicropaperPrebuilt \
     MyVerizonServices \
-    NexusLauncherRelease \
     NgaResources \
     OBDM_Permissions \
     obdm_stub \
