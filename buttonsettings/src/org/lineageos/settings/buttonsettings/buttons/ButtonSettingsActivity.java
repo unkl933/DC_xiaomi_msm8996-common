@@ -18,18 +18,14 @@
 package org.lineageos.settings.buttonsettings.buttons;
 
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 
-import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
-import com.android.settingslib.collapsingtoolbar.R;
-
-public class ButtonSettingsActivity extends CollapsingToolbarBaseActivity {
+public class ButtonSettingsActivity extends PreferenceActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getFragmentManager()
-            .beginTransaction()
-            .replace(R.id.content_frame,new ButtonSettingsFragment())
-            .commit();
+        getFragmentManager().beginTransaction().replace(android.R.id.content,
+                new ButtonSettingsFragment()).commit();
     }
 }
