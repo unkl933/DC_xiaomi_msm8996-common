@@ -23,7 +23,7 @@ namespace {
 
 int open_ts_input() {
 	int fd = -1;
-	DIR *dir = opendir("/dev/input");
+	DIR *dir = opendir("/sys/devices/");
 
 	if (dir != NULL) {
 		struct dirent *ent;
@@ -33,12 +33,13 @@ int open_ts_input() {
 				char absolute_path[PATH_MAX] = {0};
 				char name[80] = {0};
 
-				strcpy(absolute_path, "/dev/input/");
+				strcpy(absolute_path, "/sys/devices/");
 				strcat(absolute_path, ent->d_name);
 
 				fd = open(absolute_path, O_RDWR);
 				if (ioctl(fd, EVIOCGNAME(sizeof(name) - 1), &name) > 0) {
 					if (strcmp(name, "atmel_mxt_ts") == 0 ||
+                            strcmp(name, "mxt_ts") == 0 ||
 							strcmp(name, "fts") == 0 ||
 							strcmp(name, "fts_521") == 0 ||
 							strcmp(name, "fts_ts") == 0 ||
