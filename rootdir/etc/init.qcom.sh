@@ -32,6 +32,8 @@ chown -LR system.system /proc/buttons
 chown -L system.system /proc/touchpanel/reversed_keys_enable
 chown -L system.system /proc/touchpanel/capacitive_keys_enable
 
+chown -L system.system /sys/devices/soc/75ba000.i2c/i2c-12/12-004A/reversed_keys
+
 target=`getprop ro.board.platform`
 low_ram=`getprop ro.config.low_ram`
 if [ -f /sys/devices/soc0/soc_id ]; then
