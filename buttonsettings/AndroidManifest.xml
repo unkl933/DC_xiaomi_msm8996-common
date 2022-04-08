@@ -24,27 +24,27 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
-    <uses-sdk
-        android:minSdkVersion="27" />
-
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/device_settings_app_name"
-        android:theme="@style/Theme.Main"
+        android:theme="@style/Theme.SubSettingsBase"
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true">
 
-        <receiver android:name=".BootReceiver" >
+        <receiver android:name=".BootReceiver"
+                  android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
         <activity
             android:name=".buttons.ButtonSettingsActivity"
-            android:label="@string/button_panel_title">
+            android:label="@string/button_panel_title"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
