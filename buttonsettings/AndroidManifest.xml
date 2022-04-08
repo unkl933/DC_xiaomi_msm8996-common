@@ -26,6 +26,7 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
+        android:persistent="true"
         android:label="@string/device_settings_app_name"
         android:theme="@style/Theme.SubSettingsBase"
         android:defaultToDeviceProtectedStorage="true"
