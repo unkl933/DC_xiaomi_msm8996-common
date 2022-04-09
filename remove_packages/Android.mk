@@ -20,7 +20,6 @@ LOCAL_OVERRIDES_PACKAGES := \
     DMService \
     Drive \
     Flipendo \
-    FilesPrebuilt \
     GCS \
     GoogleCamera \
     GoogleTTS \
@@ -39,7 +38,6 @@ LOCAL_OVERRIDES_PACKAGES := \
     Ornament \
     PixelLiveWallpaperPrebuilt \
     PixelWallpapers2020 \
-    Photos \
     PlayAutoInstallConfig \
     PrebuiltGmail \
     RecorderPrebuilt \
