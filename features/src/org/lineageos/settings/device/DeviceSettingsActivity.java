@@ -39,4 +39,5 @@ public class DeviceSettingsActivity extends CollapsingToolbarBaseActivity {
                     .commit();
         }
     }
+
 }

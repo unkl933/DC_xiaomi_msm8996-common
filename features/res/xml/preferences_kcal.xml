@@ -17,15 +17,13 @@
     <org.lineageos.settings.device.preferences.SecureSettingSwitchPreference
         android:defaultValue="false"
         android:key="kcal_enabled"
-        android:title="@string/kcal_disabled"
-        android:icon="@drawable/ic_brush" />
+        android:title="@string/kcal_disabled" />
 
     <org.lineageos.settings.device.preferences.SecureSettingSwitchPreference
         android:defaultValue="false"
         android:dependency="kcal_enabled"
         android:key="set_on_boot"
-        android:title="@string/set_on_boot"
-        android:icon="@drawable/ic_restore" />
+        android:title="@string/set_on_boot" />
 
     <PreferenceCategory
         android:key="cat_colormanagement"
@@ -97,8 +95,7 @@
             android:defaultValue="false"
             android:dependency="kcal_enabled"
             android:key="grayscale"
-            android:title="@string/grayscale"
-            android:icon="@drawable/ic_grayscale" />
+            android:title="@string/grayscale" />
 
     </PreferenceCategory>
 </PreferenceScreen>

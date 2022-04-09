@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 The Xiaomi-SDM660 Project
+ * Copyright (C) 2018-2019 The Xiaomi-SDM660 Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,13 @@
 
 package org.lineageos.settings.device;
 
-import android.util.Log;
+import android.os.SystemProperties;
+
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import android.os.SystemProperties;
-import java.lang.NullPointerException;
-import java.lang.SecurityException;
 
 public class FileUtils {
 
@@ -40,47 +37,6 @@ public class FileUtils {
         return new File(filename).exists();
     }
 
-    private static final String TAG = "FileUtils";
-
-    private FileUtils() {
-        // This class is not supposed to be instantiated
-    }
-
-    /**
-     * Reads the first line of text from the given file.
-     * Reference {@link BufferedReader#readLine()} for clarification on what a line is
-     *
-     * @return the read line contents, or null on failure
-     */
-    public static String readOneLine(String fileName) {
-        String line = null;
-        BufferedReader reader = null;
-
-        try {
-            reader = new BufferedReader(new FileReader(fileName), 512);
-            line = reader.readLine();
-        } catch (FileNotFoundException e) {
-            Log.w(TAG, "No such file " + fileName + " for reading", e);
-        } catch (IOException e) {
-            Log.e(TAG, "Could not read from file " + fileName, e);
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException e) {
-                // Ignored, not much we can do anyway
-            }
-        }
-
-        return line;
-    }
-
-    public static boolean isFileReadable(String fileName) {
-        final File file = new File(fileName);
-        return file.exists() && file.canRead();
-    }
-    
     public static void setValue(String path, Boolean value) {
         if (fileWritable(path)) {
             if (path == null) {
@@ -159,49 +115,11 @@ public class FileUtils {
         return line;
     }
 
-    static boolean getFileValueAsBoolean(String filename, boolean defValue) {
-        String fileValue = readLine(filename);
-        if (fileValue != null) {
-            return !fileValue.equals("0");
+    static void setProp(String prop, boolean value) {
+        if (value) {
+            SystemProperties.set(prop, "1");
+        } else {
+            SystemProperties.set(prop, "0");
         }
-        return defValue;
-    }
-
-    static String readLine(String filename) {
-        if (filename == null) {
-            return null;
-        }
-        BufferedReader br = null;
-        String line;
-        try {
-            br = new BufferedReader(new FileReader(filename), 1024);
-            line = br.readLine();
-        } catch (IOException e) {
-            return null;
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    // ignore
-                }
-            }
-        }
-        return line;
-    }
-
-    static void setStringProp(String prop, String value) {
-        SystemProperties.set(prop, value);
-    }
-
-    static String getStringProp(String prop, String defaultValue) {
-        return SystemProperties.get(prop, defaultValue);
-    }
-    static void setintProp(String prop, int value) {
-        SystemProperties.set(prop, String.valueOf(value));
-    }
-
-    static int getintProp(String prop, int defaultValue) {
-        return SystemProperties.getInt(prop, defaultValue);
     }
 }

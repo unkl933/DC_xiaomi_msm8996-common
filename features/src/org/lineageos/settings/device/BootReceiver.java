@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 The Xiaomi-SDM660 Project
+ * Copyright (C) 2018-2019 The Xiaomi-SDM660 Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,20 @@ import android.content.Intent;
 import android.provider.Settings;
 
 import org.lineageos.settings.device.kcal.Utils;
+import org.lineageos.settings.device.preferences.SecureSettingSwitchPreference;
+import org.lineageos.settings.device.thermal.ThermalUtils;
+
+import java.lang.Math.*;
 
 public class BootReceiver extends BroadcastReceiver implements Utils {
 
+    public static final  String EARPIECE_GAIN_PATH = "/sys/kernel/sound_control/earpiece_gain";
+    public static final  String HEADPHONE_GAIN_PATH = "/sys/kernel/sound_control/headphone_gain";
+    public static final  String MIC_GAIN_PATH = "/sys/kernel/sound_control/mic_gain";
+    
     public void onReceive(Context context, Intent intent) {
 
+        // KCAL
         if (Settings.Secure.getInt(context.getContentResolver(), PREF_ENABLED, 0) == 1) {
             FileUtils.setValue(KCAL_ENABLE, Settings.Secure.getInt(context.getContentResolver(),
                     PREF_ENABLED, 0));
@@ -52,22 +61,39 @@ public class BootReceiver extends BroadcastReceiver implements Utils {
             FileUtils.setValue(KCAL_HUE, Settings.Secure.getInt(context.getContentResolver(),
                     PREF_HUE, HUE_DEFAULT));
         }
+        
+        // Audio Gain
+        int gain = Settings.Secure.getInt(context.getContentResolver(),
+                DeviceSettings.PREF_HEADPHONE_GAIN, 0);
+        FileUtils.setValue(HEADPHONE_GAIN_PATH, gain + " " + gain);
+        FileUtils.setValue(MIC_GAIN_PATH, Settings.Secure.getInt(context.getContentResolver(),
+                DeviceSettings.PREF_MIC_GAIN, 0));
+        FileUtils.setValue(EARPIECE_GAIN_PATH, Settings.Secure.getInt(context.getContentResolver(),
+                DeviceSettings.PREF_EARPIECE_GAIN, 0));
 
-        FileUtils.setValue(DeviceSettings.TORCH_1_BRIGHTNESS_PATH,
-                Settings.Secure.getInt(context.getContentResolver(),
-                        DeviceSettings.PREF_TORCH_BRIGHTNESS, 100));
-        FileUtils.setValue(DeviceSettings.TORCH_2_BRIGHTNESS_PATH,
-                Settings.Secure.getInt(context.getContentResolver(),
-                        DeviceSettings.PREF_TORCH_BRIGHTNESS, 100));
+        // Notification LED
+        FileUtils.setValue(DeviceSettings.NOTIF_LED_PATH,(1 + Math.pow(1.05694, Settings.Secure.getInt(
+                context.getContentResolver(), DeviceSettings.PREF_NOTIF_LED, 100))));
+
+        // Vibration Strength
         FileUtils.setValue(DeviceSettings.VIBRATION_STRENGTH_PATH, Settings.Secure.getInt(
                 context.getContentResolver(), DeviceSettings.PREF_VIBRATION_STRENGTH, 80) / 100.0 * (DeviceSettings.MAX_VIBRATION - DeviceSettings.MIN_VIBRATION) + DeviceSettings.MIN_VIBRATION);
-                FileUtils.setValue(DeviceSettings.SWAP_BUTTONS_PATH, Settings.Secure.getInt(
-                context.getContentResolver(), DeviceSettings.PREF_SWAP_BUTTONS, 0));
-        FileUtils.setValue(DeviceSettings.FINGERPRINT_WAKEUP_PATH, Settings.Secure.getInt(
-                context.getContentResolver(), DeviceSettings.PREF_FINGERPRINT_WAKEUP, 0));
-        FileUtils.setValue(DeviceSettings.FINGERPRINT_AS_BUTTON_PATH, Settings.Secure.getInt(
-                context.getContentResolver(), DeviceSettings.PREF_FINGERPRINT_AS_BUTTON, 0));
-        FileUtils.setValue(DeviceSettings.DOUBLE_TAP_TO_WAKE_PATH, Settings.Secure.getInt(
-                context.getContentResolver(), DeviceSettings.PREF_DOUBLE_TAP_TO_WAKE, 0));
+
+        // Thermal
+        FileUtils.setValue(DeviceSettings.THERMAL_PATH, Settings.Secure.getInt(context.getContentResolver(),
+                DeviceSettings.PREF_THERMAL, 0));
+
+        // Dirac
+        context.startService(new Intent(context, DiracService.class));
+
+        // FPS Info
+        boolean enabled = Settings.Secure.getInt(context.getContentResolver(), 
+                DeviceSettings.PREF_KEY_FPS_INFO, 0) == 1;
+        if (enabled) {
+            context.startService(new Intent(context, FPSInfoService.class));
+
+        // Thermal
+        ThermalUtils.startService(context);
+        }
     }
 }
