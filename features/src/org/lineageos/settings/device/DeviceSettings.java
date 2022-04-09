@@ -51,19 +51,8 @@ public class DeviceSettings extends PreferenceFragment implements
 
     // Buttons
     private static final String CATEGORY_BUTTONS = "buttons";
-
-    // Swap buttons
-    public static final String PREF_SWAP_BUTTONS = "swapbuttons";
-    public static final String SWAP_BUTTONS_PATH = "/proc/touchpanel/reversed_keys_enable";
-
-    // Fingerprint
-    // Fingerprint Wakeup
-    public static final String PREF_FINGERPRINT_WAKEUP = "fingerprint_wakeup";
-    public static final String FINGERPRINT_WAKEUP_PATH = "/sys/devices/soc/soc:fpc_fpc1020/enable_wakeup";
-
-    // Fingerprint as button
-    public static final String PREF_FINGERPRINT_AS_BUTTON = "fingerprint_as_button";
-    public static final String FINGERPRINT_AS_BUTTON_PATH = "/sys/devices/soc/soc:fpc_fpc1020/enable_key_events";
+    private static final String PREF_DEVICE_BUTTONS = "butoon_settings";
+    private static final String DEVICE_BUTTONS_PACKAGE_NAME = "org.lineageos.settings.buttonsettings";
 
     // Gestures
     private static final String CATEGORY_GESTURES = "gestures";
@@ -92,6 +81,11 @@ public class DeviceSettings extends PreferenceFragment implements
         vibrationStrength.setEnabled(FileUtils.fileWritable(VIBRATION_STRENGTH_PATH));
         vibrationStrength.setOnPreferenceChangeListener(this);
 
+        PreferenceCategory buttonsCategory = (PreferenceCategory) findPreference(CATEGORY_BUTTONS);
+        if (isAppNotInstalled(DEVICE_BUTTONS_PACKAGE_NAME)) {
+            buttonsCategory.removePreference(findPreference(PREF_DEVICE_BUTTONS));
+        }
+
         PreferenceCategory displayCategory = (PreferenceCategory) findPreference(CATEGORY_DISPLAY);
         if (isAppNotInstalled(DEVICE_DOZE_PACKAGE_NAME)) {
             displayCategory.removePreference(findPreference(PREF_DEVICE_DOZE));
@@ -104,28 +98,6 @@ public class DeviceSettings extends PreferenceFragment implements
             startActivity(intent);
             return true;
         });
-
-        if (FileUtils.fileWritable(SWAP_BUTTONS_PATH)) {
-            SecureSettingSwitchPreference swapbuttons = (SecureSettingSwitchPreference) findPreference(PREF_SWAP_BUTTONS);
-            swapbuttons.setChecked(FileUtils.getFileValueAsBoolean(SWAP_BUTTONS_PATH, false));
-            swapbuttons.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(CATEGORY_BUTTONS));
-        }
-        if (FileUtils.fileWritable(FINGERPRINT_WAKEUP_PATH)) {
-            SecureSettingSwitchPreference fingerprint_wakeup = (SecureSettingSwitchPreference) findPreference(PREF_FINGERPRINT_WAKEUP);
-            fingerprint_wakeup.setChecked(FileUtils.getFileValueAsBoolean(FINGERPRINT_WAKEUP_PATH, false));
-            fingerprint_wakeup.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(PREF_FINGERPRINT_WAKEUP));
-        }
-        if (FileUtils.fileWritable(FINGERPRINT_AS_BUTTON_PATH)) {
-            SecureSettingSwitchPreference fingerprint_as_button = (SecureSettingSwitchPreference) findPreference(PREF_FINGERPRINT_AS_BUTTON);
-            fingerprint_as_button.setChecked(FileUtils.getFileValueAsBoolean(FINGERPRINT_AS_BUTTON_PATH, false));
-            fingerprint_as_button.setOnPreferenceChangeListener(this);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(PREF_FINGERPRINT_AS_BUTTON));
-        }
 
         mSPECTRUM = (SecureSettingListPreference) findPreference(PREF_SPECTRUM);
         mSPECTRUM.setValue(FileUtils.getStringProp(SPECTRUM_SYSTEM_PROPERTY, "0"));
@@ -154,18 +126,6 @@ public class DeviceSettings extends PreferenceFragment implements
             case PREF_VIBRATION_STRENGTH:
                 double vibrationValue = (int) value / 100.0 * (MAX_VIBRATION - MIN_VIBRATION) + MIN_VIBRATION;
                 FileUtils.setValue(VIBRATION_STRENGTH_PATH, vibrationValue);
-                break;
-
-            case PREF_SWAP_BUTTONS:
-                FileUtils.setValue(SWAP_BUTTONS_PATH, (boolean) value);
-                break;
-
-            case PREF_FINGERPRINT_WAKEUP:
-                FileUtils.setValue(FINGERPRINT_WAKEUP_PATH, (boolean) value);
-                break;
-
-            case PREF_FINGERPRINT_AS_BUTTON:
-                FileUtils.setValue(FINGERPRINT_AS_BUTTON_PATH, (boolean) value);
                 break;
 
             case PREF_SPECTRUM:
