@@ -31,7 +31,7 @@ public class ButtonConstants {
     public static final String FP_WAKEUP_KEY = "fp_wakeup";
 
     // Nodes
-    public static final String CYTTSP_BUTTON_SWAP_NODE = "/proc/buttons/reversed_keys_enable";
+    public static final String CYTTSP_BUTTON_SWAP_NODE = "/proc/touchpanel/reversed_keys_enable";
     public static final String FP_HOME_KEY_NODE = "/sys/devices/soc/soc:fpc_fpc1020/enable_key_events";
     public static final String FP_PROX_NODE = "/sys/devices/soc/soc:fpc_fpc1020/proximity_state";
     public static final String FP_WAKEUP_NODE = "/sys/devices/soc/soc:fpc_fpc1020/enable_wakeup";
