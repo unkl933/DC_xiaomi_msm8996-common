@@ -1,146 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2018-2020 The Xiaomi-SDM660 Project
-     https://github.com/xiaomi-sdm660
-     
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-          http://www.apache.org/licenses/LICENSE-2.0
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
+<resources>
+    <!-- App name and summary -->
+    <string name="advanced_settings">Fitur perangkat</string>
+    <string name="advanced_settings_summary">Opsi khusus perangkat</string>
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="advanced_settings">Konfigurasi perangkat</string>
-    <string name="advanced_settings_summary">Konfigurasi spesifik perangkat</string>
+    <!-- Buttons -->
+    <string name="buttons_title">Tombol</string>
+    <string name="swapbuttons_title">Tukar tombol</string>
+    <string name="swapbuttons_summary">Tukar urutan tombol recents dan tombol back</string>
 
-    <string name="display_title">Layar</string>
+    <!-- Fingerprint options -->
+    <string name="fingerprint_title">Opsi sidik jari</string>
+    <string name="fingerprint_wakeup_title">Perangkat bangun sidik jari</string>
+    <string name="fingerprint_wakeup_summary">Mengizinkan sidik jari untuk membangunkan perangkat saat layar mati</string>
+    <string name="fingerprint_as_button_title">Sidik jari sebagai tombol</string>
+    <string name="fingerprint_as_button_summary">Gunakan Pembaca Sidik Jari sebagai tombol Disesuaikan</string>
 
-    <!-- Mi Note 3 Settings -->
-    <string name="jason_pref_title">Setelan layar</string>
-    <string name="jason_pref_summary">Setelan tambahan untuk layar</string>
+    <!-- Gestures -->
+    <string name="gestures_title">Gerakan</string>
+    <string name="double_tap_to_wake_title">Tap dua kali untuk mengaktifkan</string>
+    <string name="double_tap_to_wake_summary">Ketuk dua kali pada perangkat layar bangun</string>
+
+    <!-- Torch -->
+    <string name="torch_title">Senter</string>
+    <string name="torch_brightness_title">Kecerahan</string>
+
+    <!-- Display -->
+    <string name="display_title">Tampilan</string>
 
     <!-- KCal -->
-    <string name="device_kcal_title">Kalibrasi warna layar</string>
-
-    <!-- Notification LED brightness -->
-    <string name="notification_title">LED Notifikasi</string>
-    <string name="notification_led_title">Kecerahan LED</string>
+    <string name="device_kcal_title">Warna tampilan</string>
+    <string name="device_kcal_summary">Mengkalibrasi warna tampilan menggunakan KCAL</string>
 
     <!-- Ambient Display -->
-    <string name="ambient_display">Layar siaga</string>
-    <string name="advanced_doze_summary">setelan spesitik perangkat untuk layar siaga</string>
+    <string name="ambient_display_xiaomi">Xiaomi Doze</string>
+    <string name="advanced_doze_summary">Ambient Display</string>
 
-    <string name="vibration_title">Umpan balik getaran</string>
-    <string name="vibration_strength_title">Kekuatan</string>
+    <string name="vibration_title">Getaran</string>
+    <string name="vibration_strength_title">Intensitas</string>
 
-    <!-- Thermal Profiles -->
-    <string name="thermal_profile_title">Suhu</string>
-    <string name="thermal_title">Setelan suhu</string>
-    <string name="thermal_summary">Pilih profil suhu</string>
-    <string name="thermal_dialogTitle">Pilih profil suhu yang anda sukai</string>
+    <!-- Spectrum Profiles -->
+    <string name="spectrum_profile_title">Kinerja</string>
+    <string name="spectrum_title">Pengaturan profil</string>
+    <string name="spectrum_summary">Pilih profil kinerja Anda</string>
+    <string name="spectrum_dialogTitle">Pilih profil kinerja Anda</string>
 
-    <!-- Values for Thermal Presets -->
-    <string name="thermal_performance">Performa</string>
-    <string name="thermal_battery">Baterai</string>
-    <string name="thermal_gaming">Gaming</string>
-    <string name="thermal_balance">Seimbang</string>
-    <string name="thermal_extreme_battery">Hemat baterai ekstrim</string>
-
-    <!-- Dirac settings -->
-    <string name="dirac_title">Mi Sound Enhancer</string>
-    <string name="dirac_summary">Optimalkan kualitas audio</string>
-    <string name="dirac_headset_title">Pilih tipe headphone</string>
-    <string name="dirac_preset_title">Pilih preset</string>
-    
-    <!-- Dirac settings: Headset types -->
-    <string name="dirac_headset_default">Bawaan</string>
-    <string name="dirac_headset_earbuds">Mi Earbuds</string>
-    <string name="dirac_headset_in_ear_2013">Mi In-Ear (2013)</string>
-    <string name="dirac_headset_piston_1">Mi Piston-1</string>
-    <string name="dirac_headset_general">Umum</string>
-    <string name="dirac_headset_general_inear">In-Ear umum</string>
-    <string name="dirac_headset_piston_basic">Edisi Basic</string>
-    <string name="dirac_headset_piston_2">Mi Piston-2</string>
-    <string name="dirac_headset_piston_standard">Edisi standar</string>
-    <string name="dirac_headset_headphone">Mi Headphone</string>
-    <string name="dirac_headset_piston_youth">Edisi Youth</string>
-    <string name="dirac_headset_piston_color">Edisi Warna</string>
-    <string name="dirac_headset_in_ear">Mi In-Ear</string>
-    <string name="dirac_headset_capsule">Mi Capsule</string>
-    <string name="dirac_headset_in_ear_pro">Mi In-Ear Pro</string>
-    <string name="dirac_headset_comfort">Mi Comfort</string>
-    <string name="dirac_headset_reduction_noise">Mi Noise Cancelling Type-C</string>
-    <string name="dirac_headset_cancelling">Mi Noise Cancelling 3.5mm</string>
-    <string name="dirac_headset_half_in_ear">Mi Half In-Ear</string>
-    <string name="dirac_headset_in_ear2">Mi In-Ear 2</string>
-    <string name="dirac_headset_earphone_basic">Mi Earphones Basic</string>
-    <string name="dirac_headset_earphone">Mi Earphone</string>
-    
-    <!-- Dirac settings: Equalizer presets -->
-    <string name="dirac_preset_default">Bawaan</string>
-    <string name="dirac_preset_rock">Rock</string>
-    <string name="dirac_preset_jazz">Jazz</string>
-    <string name="dirac_preset_pop">Pop</string>
-    <string name="dirac_preset_classical">Klasik</string>
-    <string name="dirac_preset_hiphop">Hip Hop</string>
-    <string name="dirac_preset_blues">Blues</string>
-    <string name="dirac_preset_electronic">Elektronik</string>
-    <string name="dirac_preset_country">Country</string>
-    <string name="dirac_preset_dance">Dance</string>
-    <string name="dirac_preset_metal">Metal</string>
+    <!-- Values for Spectrum Presets -->
+    <string name="spectrum_performance">Kinerja</string>
+    <string name="spectrum_battery">Baterai</string>
+    <string name="spectrum_gaming">Permainan</string>
+    <string name="spectrum_balance">Seimbang</string>
+    <string name="spectrum_extreme_battery">Penghematan baterai</string>
 
     <!-- kcal -->
-    <string name="advanced_settings_kcal">Kalibrasi warna layar</string>
-    <string name="cat_colormanagement">Setelan warna</string>
-    <string name="cat_calibration">Kalibrasi layar</string>
+    <string name="advanced_settings_kcal">Tampilan kalibrasi warna</string>
+    <string name="cat_colormanagement">Pengaturan warna</string>
+    <string name="cat_calibration">Kalibrasi tampilan</string>
 
-    <string name="kcal_enabled">Hidup</string>
+    <string name="kcal_enabled">Aktif</string>
     <string name="kcal_disabled">Mati</string>
-    <string name="set_on_boot">Setel saat nyala</string>
+    <string name="set_on_boot">Ditetapkan pada startup</string>
     <string name="color_red">Merah</string>
     <string name="color_green">Hijau</string>
     <string name="color_blue">Biru</string>
-    <string name="color_minimum">Minimal</string>
+    <string name="color_minimum">Minimum</string>
     <string name="saturation">Saturasi</string>
     <string name="value">Nilai</string>
     <string name="contrast">Kontras</string>
-    <string name="hue">Hue</string>
-    <string name="grayscale">Layar hitam putih</string>
+    <string name="hue">Warna</string>
+    <string name="grayscale">Skala abu-abu</string>
+    <string name="presets_dialog_title">Pilih profil</string>
 
-    <string name="presets_dialog_title">Pilih preset_cool_amoled</string>
     <!-- Presets -->
-    <string name="preset_default">Bawaan</string>
+    <string name="preset_default">Default</string>
     <string name="preset_version_1">Versi 1</string>
     <string name="preset_version_2">Versi 2</string>
     <string name="preset_version_3">Versi 3</string>
-    <string name="preset_triluminous">Berkilau</string>
-    <string name="preset_deep_black_white">Warna hitam dan putih yang dalam</string>
-    <string name="preset_deep_natural">Natural dalam</string>
-    <string name="preset_cool_amoled">Amooled dingin</string>
-    <string name="preset_extreme_amoled">Amoled ektrim</string>
-    <string name="preset_warm_amoled">Amoled hangat</string>
-    <string name="preset_hybrid_mamba">Hibrid</string>
+    <string name="preset_triluminous">Triluminous</string>
+    <string name="preset_deep_black_white">Deep hitam dan putih</string>
+    <string name="preset_deep_natural">Alami</string>
+    <string name="preset_cool_amoled">Warna AMOLED dingin</string>
+    <string name="preset_extreme_amoled">Warna AMOLED yang kuat</string>
+    <string name="preset_warm_amoled">Warna AMOLED panas</string>
+    <string name="preset_hybrid_mamba">Hibrida Mamba</string>
+    <string name="preset_hide_ge1">Batasi efek ghosting 1</string>
+    <string name="preset_hide_ge2">Batasi efek ghosting 2</string>
 
     <!-- menu -->
     <string name="kcal_presets">@string/presets_dialog_title</string>
-    <string name="kcal_reset">Reset</string>
+    <string name="kcal_reset">Setel ulang</string>
 
     <!-- CustomSeekBarPreference -->
     <string name="edit_value">Pilih nilai baru</string>
-    <string name="default_value">Nilai bawaan</string>
-    <string name="edit_hint" formatted="false">Nilai antara %1$d dan %2$d</string>
-
-    <!-- FPS Info -->
-    <string name="fps_info_title">FPS Overlay</string>
-    <string name="fps_info_summary">Menampilkan jumlah bingkai perdetik saat ini</string>
-
-    <!-- Audio amplification -->
-    <string name="audio_amplify">Pengeras suara</string>
-    <string name="headphone_gain">Headphone Gain</string>
-    <string name="mic_gain">Microphone Gain</string>
-
+    <string name="default_value">Nilai standar</string>
+    <string name="edit_hint">Nilai diantara %1$d dan %2$d</string>
 </resources>
+ 

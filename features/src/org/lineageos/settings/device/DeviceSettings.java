@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 The Xiaomi-SDM660 Project
+ * Copyright (C) 2018 The Xiaomi-SDM660 Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,246 +24,167 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 
 import org.lineageos.settings.device.kcal.KCalSettingsActivity;
-import org.lineageos.settings.device.speaker.ClearSpeakerActivity;
+import org.lineageos.settings.device.preferences.SecureSettingCustomSeekBarPreference;
 import org.lineageos.settings.device.preferences.SecureSettingListPreference;
 import org.lineageos.settings.device.preferences.SecureSettingSwitchPreference;
 import org.lineageos.settings.device.preferences.VibrationSeekBarPreference;
-import org.lineageos.settings.device.preferences.NotificationLedSeekBarPreference;
-import org.lineageos.settings.device.preferences.CustomSeekBarPreference;
-
-import java.lang.Math.*;
 
 public class DeviceSettings extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
-    public static final String CATEGORY_VIBRATOR = "vibration";
+    // Vibration
     public static final String PREF_VIBRATION_STRENGTH = "vibration_strength";
-    public static final String VIBRATION_STRENGTH_PATH = "/sys/devices/virtual/timed_output/vibrator/vtg_level";
+    public static final String VIBRATION_STRENGTH_PATH = "/sys/class/timed_output/vibrator/vtg_level";
+    public static final int MIN_VIBRATION = 12;
+    public static final int MAX_VIBRATION = 127;
 
-    public static final String CATEGORY_NOTIF = "notification_led";
-    public static final String PREF_NOTIF_LED = "notification_led_brightness";
-    public static final String NOTIF_LED_PATH = "/sys/class/leds/white/max_brightness";
-
-    public static final  String CATEGORY_AUDIO_AMPLIFY = "audio_amplify";
-    public static final  String PREF_EARPIECE_GAIN = "earpiece_gain";
-    public static final  String PREF_HEADPHONE_GAIN = "headphone_gain";
-    public static final  String PREF_MIC_GAIN = "mic_gain";
-    public static final  String EARPIECE_GAIN_PATH = "/sys/kernel/sound_control/earpiece_gain";
-    public static final  String HEADPHONE_GAIN_PATH = "/sys/kernel/sound_control/headphone_gain";
-    public static final  String MIC_GAIN_PATH = "/sys/kernel/sound_control/mic_gain";
-
-    private static final String PREF_ENABLE_DIRAC = "dirac_enabled";
-    private static final String PREF_HEADSET = "dirac_headset_pref";
-    private static final String PREF_PRESET = "dirac_preset_pref";
-
-    public static final String PREF_KEY_FPS_INFO = "fps_info";
-
-    // value of vtg_min and vtg_max
-    public static final int MIN_VIBRATION = 116;
-    public static final int MAX_VIBRATION = 3596;
-
-    // value of min_led and max_led
-    public static final int MIN_LED = 1;
-    public static final int MAX_LED = 255;
-
+    // Display
     private static final String CATEGORY_DISPLAY = "display";
     private static final String PREF_DEVICE_DOZE = "device_doze";
     private static final String PREF_DEVICE_KCAL = "device_kcal";
+    private static final String DEVICE_DOZE_PACKAGE_NAME = "org.lineageos.settings.doze";
 
-    public static final String PREF_THERMAL = "thermal";
-    public static final String THERMAL_PATH = "/sys/devices/virtual/thermal/thermal_message/sconfig";
+    // Spectrum
+    public static final String PREF_SPECTRUM = "spectrum";
+    public static final String SPECTRUM_SYSTEM_PROPERTY = "persist.spectrum.profile";
+    private SecureSettingListPreference mSPECTRUM;
 
-    private static final String DEVICE_DOZE_PACKAGE_NAME = "com.advanced.settings.doze";
+    // Buttons
+    private static final String CATEGORY_BUTTONS = "buttons";
 
-    private static final String DEVICE_JASON_PACKAGE_NAME = "org.lineageos.settings.devicex";
-    private static final String PREF_DEVICE_JASON = "device_jason";
-    
-    private static final String PREF_CLEAR_SPEAKER = "clear_speaker_settings";
-    private Preference mClearSpeakerPref;
+    // Swap buttons
+    public static final String PREF_SWAP_BUTTONS = "swapbuttons";
+    public static final String SWAP_BUTTONS_PATH = "/proc/touchpanel/reversed_keys_enable";
 
-    private SecureSettingSwitchPreference mEnableDirac;
-    private SecureSettingListPreference mHeadsetType;
-    private SecureSettingListPreference mPreset;
-    private SecureSettingListPreference mTHERMAL;
+    // Fingerprint
+    // Fingerprint Wakeup
+    public static final String PREF_FINGERPRINT_WAKEUP = "fingerprint_wakeup";
+    public static final String FINGERPRINT_WAKEUP_PATH = "/sys/devices/soc/soc:fpc_fpc1020/enable_wakeup";
 
+    // Fingerprint as button
+    public static final String PREF_FINGERPRINT_AS_BUTTON = "fingerprint_as_button";
+    public static final String FINGERPRINT_AS_BUTTON_PATH = "/sys/devices/soc/soc:fpc_fpc1020/enable_key_events";
+
+    // Gestures
+    private static final String CATEGORY_GESTURES = "gestures";
+
+    // Double tap to wake
+    public static final String PREF_DOUBLE_TAP_TO_WAKE = "double_tap_to_wake";
+    public static final String DOUBLE_TAP_TO_WAKE_PATH = "/proc/touchpanel/double_tap_enable";
+
+    // Torch
+    public static final String PREF_TORCH_BRIGHTNESS = "torch_brightness";
+    public static final String TORCH_1_BRIGHTNESS_PATH = "/sys/devices/soc/qpnp-flash-led-30/leds/led:torch_0/max_brightness";
+    public static final String TORCH_2_BRIGHTNESS_PATH = "/sys/devices/soc/qpnp-flash-led-30/leds/led:torch_1/max_brightness";
+
+    // onCreatePreferences
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences_xiaomi_parts, rootKey);
-        
-        mClearSpeakerPref = (Preference) findPreference(PREF_CLEAR_SPEAKER);
-        mClearSpeakerPref.setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(getActivity().getApplicationContext(), ClearSpeakerActivity.class);
-            startActivity(intent);
-            return true;
-        });
 
 
-        // LED Brightness
-        if (FileUtils.fileWritable(NOTIF_LED_PATH)) {
-            NotificationLedSeekBarPreference notifLedBrightness =
-                    (NotificationLedSeekBarPreference) findPreference(PREF_NOTIF_LED);
-            notifLedBrightness.setOnPreferenceChangeListener(this);
-        } else { getPreferenceScreen().removePreference(findPreference(CATEGORY_NOTIF)); }
+        SecureSettingCustomSeekBarPreference TorchBrightness = (SecureSettingCustomSeekBarPreference) findPreference(PREF_TORCH_BRIGHTNESS);
+        TorchBrightness.setEnabled(FileUtils.fileWritable(TORCH_1_BRIGHTNESS_PATH) &&
+                FileUtils.fileWritable(TORCH_2_BRIGHTNESS_PATH));
+        TorchBrightness.setOnPreferenceChangeListener(this);
 
-        // Haptic Strength
-        if (FileUtils.fileWritable(VIBRATION_STRENGTH_PATH)) {
-            VibrationSeekBarPreference vibrationStrength = (VibrationSeekBarPreference) findPreference(PREF_VIBRATION_STRENGTH);
-            vibrationStrength.setOnPreferenceChangeListener(this);
-        } else { getPreferenceScreen().removePreference(findPreference(CATEGORY_VIBRATOR)); }
+        VibrationSeekBarPreference vibrationStrength = (VibrationSeekBarPreference) findPreference(PREF_VIBRATION_STRENGTH);
+        vibrationStrength.setEnabled(FileUtils.fileWritable(VIBRATION_STRENGTH_PATH));
+        vibrationStrength.setOnPreferenceChangeListener(this);
 
-        // Amplify Audio 
-        PreferenceCategory gainCategory = (PreferenceCategory) findPreference(CATEGORY_AUDIO_AMPLIFY);
-        // Earpiece Gain
-        if (FileUtils.fileWritable(EARPIECE_GAIN_PATH)) {
-           CustomSeekBarPreference earpieceGain = (CustomSeekBarPreference) findPreference(PREF_EARPIECE_GAIN);
-           earpieceGain.setOnPreferenceChangeListener(this);
-        } else {
-          gainCategory.removePreference(findPreference(PREF_EARPIECE_GAIN));
-        }
-        // Headphone Gain
-        if (FileUtils.fileWritable(HEADPHONE_GAIN_PATH)) {
-           CustomSeekBarPreference headphoneGain = (CustomSeekBarPreference) findPreference(PREF_HEADPHONE_GAIN);
-           headphoneGain.setOnPreferenceChangeListener(this);
-        } else {
-          gainCategory.removePreference(findPreference(PREF_HEADPHONE_GAIN));
-        }
-        // Mic Gain
-        if (FileUtils.fileWritable(MIC_GAIN_PATH)) {
-           CustomSeekBarPreference micGain = (CustomSeekBarPreference) findPreference(PREF_MIC_GAIN);
-           micGain.setOnPreferenceChangeListener(this);
-        } else {
-          gainCategory.removePreference(findPreference(PREF_MIC_GAIN));
-        }
-
-        // Display Category
         PreferenceCategory displayCategory = (PreferenceCategory) findPreference(CATEGORY_DISPLAY);
-        // Doze
         if (isAppNotInstalled(DEVICE_DOZE_PACKAGE_NAME)) {
             displayCategory.removePreference(findPreference(PREF_DEVICE_DOZE));
         }
-        // Jason Settings
-        if (isAppNotInstalled(DEVICE_JASON_PACKAGE_NAME)) {
-            displayCategory.removePreference(findPreference(PREF_DEVICE_JASON));
-        }
-        //FPS Info
-        SecureSettingSwitchPreference fpsInfo = (SecureSettingSwitchPreference) findPreference(PREF_KEY_FPS_INFO);
-        fpsInfo.setOnPreferenceChangeListener(this);
-        // KCAL
+
         Preference kcal = findPreference(PREF_DEVICE_KCAL);
+
         kcal.setOnPreferenceClickListener(preference -> {
             Intent intent = new Intent(getActivity().getApplicationContext(), KCalSettingsActivity.class);
             startActivity(intent);
             return true;
         });
 
-        // Thermal Switch
-        mTHERMAL = (SecureSettingListPreference) findPreference(PREF_THERMAL);
-        mTHERMAL.setValue(FileUtils.getValue(THERMAL_PATH));
-        mTHERMAL.setSummary(mTHERMAL.getEntry());
-        mTHERMAL.setOnPreferenceChangeListener(this);
-
-        // Dirac
-        boolean enhancerEnabled;
-        try {
-            enhancerEnabled = DiracService.sDiracUtils.isDiracEnabled();
-        } catch (java.lang.NullPointerException e) {
-            getContext().startService(new Intent(getContext(), DiracService.class));
-            try {
-                enhancerEnabled = DiracService.sDiracUtils.isDiracEnabled();
-            } catch (NullPointerException ne) {
-                // Avoid crash
-                ne.printStackTrace();
-                enhancerEnabled = false;
-            }
+        if (FileUtils.fileWritable(SWAP_BUTTONS_PATH)) {
+            SecureSettingSwitchPreference swapbuttons = (SecureSettingSwitchPreference) findPreference(PREF_SWAP_BUTTONS);
+            swapbuttons.setChecked(FileUtils.getFileValueAsBoolean(SWAP_BUTTONS_PATH, false));
+            swapbuttons.setOnPreferenceChangeListener(this);
+        } else {
+            getPreferenceScreen().removePreference(findPreference(CATEGORY_BUTTONS));
+        }
+        if (FileUtils.fileWritable(FINGERPRINT_WAKEUP_PATH)) {
+            SecureSettingSwitchPreference fingerprint_wakeup = (SecureSettingSwitchPreference) findPreference(PREF_FINGERPRINT_WAKEUP);
+            fingerprint_wakeup.setChecked(FileUtils.getFileValueAsBoolean(FINGERPRINT_WAKEUP_PATH, false));
+            fingerprint_wakeup.setOnPreferenceChangeListener(this);
+        } else {
+            getPreferenceScreen().removePreference(findPreference(PREF_FINGERPRINT_WAKEUP));
+        }
+        if (FileUtils.fileWritable(FINGERPRINT_AS_BUTTON_PATH)) {
+            SecureSettingSwitchPreference fingerprint_as_button = (SecureSettingSwitchPreference) findPreference(PREF_FINGERPRINT_AS_BUTTON);
+            fingerprint_as_button.setChecked(FileUtils.getFileValueAsBoolean(FINGERPRINT_AS_BUTTON_PATH, false));
+            fingerprint_as_button.setOnPreferenceChangeListener(this);
+        } else {
+            getPreferenceScreen().removePreference(findPreference(PREF_FINGERPRINT_AS_BUTTON));
         }
 
-        // Dirac Switch
-        mEnableDirac = (SecureSettingSwitchPreference) findPreference(PREF_ENABLE_DIRAC);
-        mEnableDirac.setOnPreferenceChangeListener(this);
-        mEnableDirac.setChecked(enhancerEnabled);
-        // Headset
-        mHeadsetType = (SecureSettingListPreference) findPreference(PREF_HEADSET);
-        mHeadsetType.setOnPreferenceChangeListener(this);
-        // Preset
-        mPreset = (SecureSettingListPreference) findPreference(PREF_PRESET);
-        mPreset.setOnPreferenceChangeListener(this);
+        mSPECTRUM = (SecureSettingListPreference) findPreference(PREF_SPECTRUM);
+        mSPECTRUM.setValue(FileUtils.getStringProp(SPECTRUM_SYSTEM_PROPERTY, "0"));
+        mSPECTRUM.setSummary(mSPECTRUM.getEntry());
+        mSPECTRUM.setOnPreferenceChangeListener(this);
 
+        if (FileUtils.fileWritable(DOUBLE_TAP_TO_WAKE_PATH)) {
+            SecureSettingSwitchPreference double_tap_to_wake = (SecureSettingSwitchPreference) findPreference(PREF_DOUBLE_TAP_TO_WAKE);
+            double_tap_to_wake.setChecked(FileUtils.getFileValueAsBoolean(DOUBLE_TAP_TO_WAKE_PATH, false));
+            double_tap_to_wake.setOnPreferenceChangeListener(this);
+        } else {
+            getPreferenceScreen().removePreference(findPreference(CATEGORY_GESTURES));
+        }
     }
 
+    // onPreferenceChange
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
         final String key = preference.getKey();
         switch (key) {
-            case PREF_NOTIF_LED:
-                FileUtils.setValue(NOTIF_LED_PATH, (1 + Math.pow(1.05694, (int) value )));
+            case PREF_TORCH_BRIGHTNESS:
+                FileUtils.setValue(TORCH_1_BRIGHTNESS_PATH, (int) value);
+                FileUtils.setValue(TORCH_2_BRIGHTNESS_PATH, (int) value);
                 break;
-
+                
             case PREF_VIBRATION_STRENGTH:
                 double vibrationValue = (int) value / 100.0 * (MAX_VIBRATION - MIN_VIBRATION) + MIN_VIBRATION;
                 FileUtils.setValue(VIBRATION_STRENGTH_PATH, vibrationValue);
                 break;
 
-            case PREF_EARPIECE_GAIN:
-                FileUtils.setValue(EARPIECE_GAIN_PATH, (int) value);
+            case PREF_SWAP_BUTTONS:
+                FileUtils.setValue(SWAP_BUTTONS_PATH, (boolean) value);
                 break;
 
-            case PREF_HEADPHONE_GAIN:
-                FileUtils.setValue(HEADPHONE_GAIN_PATH, value + " " + value);
+            case PREF_FINGERPRINT_WAKEUP:
+                FileUtils.setValue(FINGERPRINT_WAKEUP_PATH, (boolean) value);
                 break;
 
-            case PREF_MIC_GAIN:
-                FileUtils.setValue(MIC_GAIN_PATH, (int) value);
+            case PREF_FINGERPRINT_AS_BUTTON:
+                FileUtils.setValue(FINGERPRINT_AS_BUTTON_PATH, (boolean) value);
                 break;
 
-            case PREF_ENABLE_DIRAC:
-                try {
-                    DiracService.sDiracUtils.setEnabled((boolean) value);
-                } catch (java.lang.NullPointerException e) {
-                    getContext().startService(new Intent(getContext(), DiracService.class));
-                    DiracService.sDiracUtils.setEnabled((boolean) value);
-                }
+            case PREF_SPECTRUM:
+                mSPECTRUM.setValue((String) value);
+                mSPECTRUM.setSummary(mSPECTRUM.getEntry());
+                FileUtils.setStringProp(SPECTRUM_SYSTEM_PROPERTY, (String) value);
                 break;
 
-            case PREF_HEADSET:
-                try {
-                    DiracService.sDiracUtils.setHeadsetType(Integer.parseInt(value.toString()));
-                } catch (java.lang.NullPointerException e) {
-                    getContext().startService(new Intent(getContext(), DiracService.class));
-                    DiracService.sDiracUtils.setHeadsetType(Integer.parseInt(value.toString()));
-                }
+            case PREF_DOUBLE_TAP_TO_WAKE:
+                FileUtils.setValue(DOUBLE_TAP_TO_WAKE_PATH, (boolean) value);
                 break;
 
-            case PREF_PRESET:
-                try {
-                    DiracService.sDiracUtils.setLevel(String.valueOf(value));
-                } catch (java.lang.NullPointerException e) {
-                    getContext().startService(new Intent(getContext(), DiracService.class));
-                    DiracService.sDiracUtils.setLevel(String.valueOf(value));
-                }
-                break;
-
-            case PREF_KEY_FPS_INFO:
-                boolean enabled = (boolean) value;
-                Intent fpsinfo = new Intent(this.getContext(), FPSInfoService.class);
-                if (enabled) {
-                    this.getContext().startService(fpsinfo);
-                } else {
-                    this.getContext().stopService(fpsinfo);
-                }
-                break;
-
-            case PREF_THERMAL:
-                mTHERMAL.setValue((String) value);
-                mTHERMAL.setSummary(mTHERMAL.getEntry());
-                FileUtils.setValue(THERMAL_PATH, (String) value);
-                break;
-                
             default:
                 break;
         }
         return true;
     }
 
+    // isAppNotInstalled
     private boolean isAppNotInstalled(String uri) {
         PackageManager packageManager = getContext().getPackageManager();
         try {

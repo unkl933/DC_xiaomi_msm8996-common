@@ -7,12 +7,11 @@ public class PerformanceTileService extends TileService {
 
     @Override
     public void onStartListening() {
-
-        int currentState = Integer.parseInt(FileUtils.getValue(DeviceSettings.THERMAL_PATH));
+        int currentState = FileUtils.getintProp(DeviceSettings.SPECTRUM_SYSTEM_PROPERTY, 0);
 
         Tile tile = getQsTile();
         tile.setState(Tile.STATE_ACTIVE);
-        tile.setLabel(getResources().getStringArray(R.array.thermal_profiles)[currentState]);
+        tile.setLabel(getResources().getStringArray(R.array.spectrum_profiles)[currentState]);
 
         tile.updateTile();
         super.onStartListening();
@@ -20,7 +19,7 @@ public class PerformanceTileService extends TileService {
 
     @Override
     public void onClick() {
-        int currentState = Integer.parseInt(FileUtils.getValue(DeviceSettings.THERMAL_PATH));
+        int currentState = FileUtils.getintProp(DeviceSettings.SPECTRUM_SYSTEM_PROPERTY, 0);
 
         int nextState;
         if (currentState == 4) {
@@ -30,8 +29,8 @@ public class PerformanceTileService extends TileService {
         }
 
         Tile tile = getQsTile();
-        FileUtils.setValue(DeviceSettings.THERMAL_PATH, nextState);
-        tile.setLabel(getResources().getStringArray(R.array.thermal_profiles)[nextState]);
+        FileUtils.setintProp(DeviceSettings.SPECTRUM_SYSTEM_PROPERTY, nextState);
+        tile.setLabel(getResources().getStringArray(R.array.spectrum_profiles)[nextState]);
 
         tile.updateTile();
         super.onClick();
