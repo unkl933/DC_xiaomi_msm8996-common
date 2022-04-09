@@ -22,6 +22,10 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <uses-sdk
+        android:minSdkVersion="27"
+        android:targetSdkVersion="30"/>
+
     <application
         android:label="@string/advanced_settings"
         android:persistent="true"
